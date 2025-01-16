@@ -1,7 +1,7 @@
 import tkinter as tk
 
-
-def agreag_num(num):
+##agregar nnumeros
+def main(num):
     if resultado_entry.get() == "Ingresa un dato":
         resultado_entry.delete(0, tk.END)
 
@@ -9,7 +9,7 @@ def agreag_num(num):
     resultado_entry.delete(0, tk.END) 
     resultado_entry.insert(tk.END, agregar_numero + str(num))
 
-
+##funcion para los calculos 
 def cal():
     try:
         expresion = resultado_entry.get()
@@ -23,22 +23,24 @@ def cal():
         resultado_entry.delete(0, tk.END)
         resultado_entry.insert(tk.END, "ERROR")
 
+
+#Button to delete the window
 def borrar():
     resultado_entry.delete(0, tk.END)
     resultado_entry.get() == "Ingresa un dato"
 
 def focus_in(event):
-    """Función para borrar el texto por defecto cuando se hace click o se selecciona el campo"""
+    """Function to delete the text by defect"""
     if resultado_entry.get() == "Ingresa un dato":
         resultado_entry.delete(0, tk.END)
 
     
         
-#raise ValueError
+
 
 window = tk.Tk()
-window.geometry('500x500')
-window.title("Calculadora")
+window.geometry('500x500')#dimension of the window
+window.title("Calculadora")##name of in the window
 window.resizable(False, False) #venana no se mueva de las dimensiones
 
 resultado_entry = tk.Entry(window, width=20, font=('Arial', 12), borderwidth=2, relief='solid')
@@ -47,7 +49,7 @@ resultado_entry.insert(0, 'Ingresa un dato' )
 
 resultado_entry.bind("<FocusIn>", focus_in)
 
-##declaramos las variables de los numeros
+##buttons and in cmns and raw
 botones_numeros = [
     ('7', 1, 0), ('8', 1, 1), ('9', 1, 2),
     ('4', 2, 0), ('5', 2, 1), ('6', 2, 2),
@@ -55,11 +57,10 @@ botones_numeros = [
     ('0', 4, 1)
 ]
 
-
-    
+##buttons and in cmns and raw 
 for (texto, row, col) in botones_numeros:
     tk.Button(window, text=texto, width=5, height=2, font=('Arial', 14),
-              command=lambda num=texto: agreag_num(num)).grid(row=row, column=col, padx=5, pady=5)
+              command=lambda num=texto: main(num)).grid(row=row, column=col, padx=5, pady=5)
 
 
 operaciones = [
@@ -77,14 +78,8 @@ for (texto, row, col) in operaciones:
         tk.Button(window, text=texto, width=5, height=2, font=('Arial', 14), command=borrar).grid(row=row, column=col, padx=5, pady=5)
     else:
         tk.Button(window, text=texto, width=5, height=2, font=('Arial', 14),
-                  command=lambda op=texto: agreag_num(op)).grid(row=row, column=col, padx=5, pady=5)
+                  command=lambda op=texto: main(op)).grid(row=row, column=col, padx=5, pady=5)
 
 
-#multiplicacion_botton=tk.Button(window, text='*', command=multiplicacion)
-#multiplicacion_botton.pack(pady=20)
-
-#division_botton=tk.Button(window, text='+', command=suma)
-#division_botton.pack(pady=20  )
-
-# Iniciar el bucle de eventos de Tkinter
+# start of the bucle 
 window.mainloop()
